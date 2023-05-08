@@ -12,6 +12,7 @@ class WatchyMulti : public Watchy {
         void drawWatchFace();
         void drawWatchFace7SEG();
         void drawWatchFaceBadForEye();
+        void drawWatchFaceLine();
 
     private:
         void drawTime7SEG();
@@ -19,6 +20,8 @@ class WatchyMulti : public Watchy {
         void drawSteps7SEG();
         void drawWeather7SEG();
         void drawBattery7SEG();
+        void drawHandLine(uint8_t _radius_, float _angle_, bool _light_);
+        void drawWatchFaceBahn();
 };
 
 #endif
