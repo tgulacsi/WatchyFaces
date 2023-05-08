@@ -2,26 +2,23 @@
 #define WATCHY_MULTI_H
 
 #include <Watchy.h>
-#include "Watchy_7_SEG.h"
-#include "Watchy_BadForEye.h"
-
-#define FACE_COUNT 2
+#include "Watchy_Multi.h"
 
 class WatchyMulti : public Watchy {
-
-    //using Watchy::Watchy;
+    using Watchy::Watchy;
 
     public:
-        WatchyMulti(const watchySettings &s) : Watchy(s) {  //constructor
-            this->faces[0] = Watchy7SEG(s);
-            this->faces[1] = BadForEye(s);
-        }
-
-        void drawWatchFace();
         void handleButtonPress();
+        void drawWatchFace();
+        void drawWatchFace7SEG();
+        void drawWatchFaceBadForEye();
 
     private:
-        Watchy faces[FACE_COUNT];
+        void drawTime7SEG();
+        void drawDate7SEG();
+        void drawSteps7SEG();
+        void drawWeather7SEG();
+        void drawBattery7SEG();
 };
 
 #endif
