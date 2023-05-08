@@ -15,25 +15,36 @@
 #define DARKMODE false
 #define FACE_COUNT 4
 
-uint32_t faceIdx = 0;
+RTC_DATA_ATTR int faceIdx = 0;
 
 void WatchyMulti::handleButtonPress() {
-  uint64_t wakeupBit = esp_sleep_get_ext1_wakeup_status();                                                                                             
-  if( guiState == WATCHFACE_STATE && 
+  uint64_t wakeupBit = esp_sleep_get_ext1_wakeup_status();
+  if( //guiState == WATCHFACE_STATE && 
       wakeupBit & BACK_BTN_MASK && wakeupBit & UP_BTN_MASK ) {
+    //vibMotor(75, faceIdx * 2 + 1);
     faceIdx = (faceIdx+1) % FACE_COUNT;
+    //delay(1000);
+    //vibMotor(75, faceIdx * 2 + 1);
+    drawWatchFace();
+    //delay(2000);
+    //vibMotor(75, faceIdx * 2 + 1);
   }
 }
 
 void WatchyMulti::drawWatchFace() {
-  if( faceIdx == 1 ) {
+  switch( faceIdx ) {
+  case 1:
     drawWatchFaceBadForEye();
-  } else if( faceIdx == 2 ) {
+    break;
+  case 2:
     drawWatchFaceLine();    
-  } else if( faceIdx == 3 ) {
+    break;
+  case 3:
     drawWatchFaceBahn();
-  } else {
+    break;
+  default:
     drawWatchFace7SEG();
+    break;
   }
 }
 
