@@ -21,13 +21,8 @@ void WatchyMulti::handleButtonPress() {
   uint64_t wakeupBit = esp_sleep_get_ext1_wakeup_status();
   if( //guiState == WATCHFACE_STATE && 
       wakeupBit & BACK_BTN_MASK && wakeupBit & UP_BTN_MASK ) {
-    //vibMotor(75, faceIdx * 2 + 1);
+    vibMotor(75, (faceIdx + 1) * 2);
     faceIdx = (faceIdx+1) % FACE_COUNT;
-    //delay(1000);
-    //vibMotor(75, faceIdx * 2 + 1);
-    drawWatchFace();
-    //delay(2000);
-    //vibMotor(75, faceIdx * 2 + 1);
   }
 }
 
